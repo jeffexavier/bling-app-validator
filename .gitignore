@@ -1,2 +1,5 @@
-### dotenv ###
+# Ignorar arquivos de ambiente
 .env
+
+# Ignorar o arquivo do banco de dados local
+db.json
