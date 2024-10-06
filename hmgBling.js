@@ -1,7 +1,8 @@
 import { addToken } from "./apiToken.js"
 
+// 1ª etapa da homologação Bling.
 async function getProduct() {
-    const newToken = await addToken()
+    const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
     const getNewProduct = await fetch("https://api.bling.com.br/Api/v3/homologacao/produtos", {
         method: "GET",
@@ -15,10 +16,11 @@ async function getProduct() {
     return getNewProduct
 }
 
+// 2ª etapa da homologação Bling.
 async function postProduct() {
-    const newToken = await addToken()
+    const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
-    const getNewProduct = await getProduct()
+    const getNewProduct = await getProduct() // Executa a etapa anterior
     const newBody = await getNewProduct.json()
 
     const postNewProduct = await fetch("https://api.bling.com.br/Api/v3/homologacao/produtos", {
@@ -26,7 +28,7 @@ async function postProduct() {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + newToken.access_token,  
-            "x-bling-homologacao": getNewProduct.headers.get('x-bling-homologacao')
+            "x-bling-homologacao": getNewProduct.headers.get('x-bling-homologacao') // Utiliza o objeto "x-bling-homologacao" da reposta da última etapa.
         },
         body: JSON.stringify(await newBody.data)
     })
@@ -36,10 +38,11 @@ async function postProduct() {
     return postNewProduct
 }
 
+// 3ª etapa da homologação Bling.
 async function putProduct() {
-    const newToken = await addToken()
+    const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
-    const postNewProduct = await postProduct()
+    const postNewProduct = await postProduct() // Executa a etapa anterior
     const newBody = await postNewProduct.json()
 
     const nextBody = {...newBody.data, nome: "Copo"}
@@ -49,7 +52,7 @@ async function putProduct() {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + newToken.access_token,  
-            "x-bling-homologacao": postNewProduct.headers.get('x-bling-homologacao')
+            "x-bling-homologacao": postNewProduct.headers.get('x-bling-homologacao') // Utiliza o objeto "x-bling-homologacao" da reposta da última etapa.
         },
         body: JSON.stringify(nextBody)
     })
@@ -62,10 +65,11 @@ async function putProduct() {
     }
 }
 
+// 4ª etapa da homologação Bling.
 async function patchProduct() {
-    const newToken = await addToken()
+    const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
-    const putNewProduct = await putProduct()
+    const putNewProduct = await putProduct() // Executa a etapa anterior
     const idProduct = await putNewProduct.idProduct
 
     const patchNewProduct = await fetch(`https://api.bling.com.br/Api/v3/homologacao/produtos/${idProduct}/situacoes`, {
@@ -73,7 +77,7 @@ async function patchProduct() {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + newToken.access_token,  
-            "x-bling-homologacao": putNewProduct.response.headers.get('x-bling-homologacao')
+            "x-bling-homologacao": putNewProduct.response.headers.get('x-bling-homologacao') // Utiliza o objeto "x-bling-homologacao" da reposta da última etapa.
         },
         body: JSON.stringify({situacao: "I"})
     })
@@ -86,10 +90,11 @@ async function patchProduct() {
     }       
 }
 
+// 5ª etapa da homologação Bling.
 async function deleteProduct() {
-    const newToken = await addToken()
+    const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
-    const patchNewProduct = await patchProduct()
+    const patchNewProduct = await patchProduct() // Executa a etapa anterior
     const idProduct = await patchNewProduct.idProduct
 
     const deleteNewProduct = await fetch(`https://api.bling.com.br/Api/v3/homologacao/produtos/${idProduct}`, {
@@ -97,7 +102,7 @@ async function deleteProduct() {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + newToken.access_token,  
-            "x-bling-homologacao": patchNewProduct.response.headers.get('x-bling-homologacao')
+            "x-bling-homologacao": patchNewProduct.response.headers.get('x-bling-homologacao') // Utiliza o objeto "x-bling-homologacao" da reposta da última etapa.
         },
         body: JSON.stringify({situacao: "I"})
     })
