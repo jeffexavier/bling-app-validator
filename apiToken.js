@@ -2,10 +2,9 @@ import fs from 'fs'
 import getToken from './refreshToken.js';
 
 
-// Caminho do arquivo JSON
+// Arquivo onde os tokens são registrados.
 const filePath = './db.json';
 
-// Função para ler os dados do JSON
 function readData() {
   const data = fs.readFileSync(filePath, 'utf8');
   return JSON.parse(data);
