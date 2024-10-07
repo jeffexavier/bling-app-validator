@@ -119,8 +119,8 @@ export default async function deleteProduct() {
         body: JSON.stringify({situacao: "I"})
     })
     .then( res  => {
-        console.log("- 5ª e última etapa concluída!")
-        return "Todas as etapas da homologação foram concluídas com sucesso! Verfique"
+        console.log("- 5ª etapa concluída!")
+        return "Todas as etapas da homologação foram concluídas com sucesso!"
     })
     .catch( err => err )
 
