@@ -3,7 +3,7 @@ import getToken from './refreshToken.js';
 
 
 // Arquivo onde os tokens são registrados.
-const filePath = './db.json';
+const filePath = './src/db.json';
 
 function readData() {
   const data = fs.readFileSync(filePath, 'utf8');
