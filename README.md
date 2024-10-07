@@ -1,10 +1,11 @@
+
 # BLING-APP-VALIDATOR
 
 BLING-APP-VALIDATOR é uma aplicação criada para facilitar a homologação de aplicativos na plataforma Bling, um ERP online amplamente utilizado pelo varejo brasileiro. O processo de homologação pode ser longo e complicado, e essa ferramenta ajuda a automatizar e validar os passos necessários, tornando o processo mais simples e eficiente.
 
 ## Repositório
 
-O projeto está disponível no GitHub e pode ser acessado [aqui](https://github.com/jeffexavier/bling-app-validator).
+O projeto está hospedado no GitHub e pode ser acessado [aqui](https://github.com/jeffexavier/bling-app-validator).
 
 ## Requisitos
 
@@ -26,14 +27,14 @@ npm install
 
 ## Configuração
 
-Antes de rodar o projeto, é necessário configurar os arquivo `.env` e `db.json`:
+Antes de rodar o projeto, é necessário configurar o arquivo `.env`:
 
 1. **Arquivo `.env`**
    
    Crie um arquivo `.env` na raiz do projeto e adicione a seguinte variável de ambiente:
 
    ```bash
-   BASIC_AUTH='Basic Base64(client_id:client_secret)'
+   BASIC_AUTH='Basic BASE64(client_id:client_secret)'
    ```
 
    O valor de `BASIC_AUTH` deve ser a palavra "Basic" seguida do código codificado em Base64 das suas credenciais no formato `client_id:client_secret`.
@@ -64,7 +65,26 @@ Antes de rodar o projeto, é necessário configurar os arquivo `.env` e `db.json
    }
    ```
 
-O primeiro objeto deve ser a resposta da autorização realizada no fluxo de autorização do aplicativo, conforme a [documentação oficial do Bling](https://developer.bling.com.br/aplicativos#fluxo-de-autoriza%C3%A7%C3%A3o).
+O primeiro objeto deve ser a resposta da autorização realizada no fluxo de autorização do aplicativo, conforme a documentação oficial do Bling.
+
+## Execução do Código
+
+Após configurar corretamente o arquivo `.env` e o `db.json`, para executar o código de forma simples, basta rodar o comando:
+
+```bash
+npm start
+```
+
+Se tudo estiver configurado corretamente, você deverá ver as seguintes mensagens no terminal conforme cada etapa do processo for concluída:
+
+```
+- 1ª etapa concluída!
+- 2ª etapa concluída!
+- 3ª etapa concluída!
+- 4ª etapa concluída!
+- 5ª e última etapa concluída!
+Todas as etapas da homologação foram concluídas com sucesso!
+```
 
 ## Licença
 
