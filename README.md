@@ -5,7 +5,7 @@ BLING-APP-VALIDATOR é uma aplicação criada para facilitar a homologação de 
 
 ## Repositório
 
-O projeto está hospedado no GitHub e pode ser acessado [aqui](https://github.com/jeffexavier/bling-app-validator).
+O projeto está disponível no GitHub e pode ser acessado [aqui](https://github.com/jeffexavier/bling-app-validator).
 
 ## Requisitos
 
