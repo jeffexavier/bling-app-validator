@@ -10,7 +10,10 @@ async function getProduct() {
             "Authorization": "Bearer " + newToken.access_token
         }
     })
-    .then( res  => res )
+    .then( res  => {
+        console.log("- 1ª etapa concluída!")
+        return res
+    })
     .catch( err => err )
 
     return getNewProduct
@@ -32,7 +35,10 @@ async function postProduct() {
         },
         body: JSON.stringify(await newBody.data)
     })
-    .then( res  => res )
+    .then( res  => {
+        console.log("- 2ª etapa concluída!")
+        return res
+    })
     .catch( err => err )
 
     return postNewProduct
@@ -56,7 +62,10 @@ async function putProduct() {
         },
         body: JSON.stringify(nextBody)
     })
-    .then( res  => res )
+    .then( res  => {
+        console.log("- 3ª etapa concluída!")
+        return res
+    })
     .catch( err => err )
 
     return {
@@ -81,7 +90,10 @@ async function patchProduct() {
         },
         body: JSON.stringify({situacao: "I"})
     })
-    .then( res  => res )
+    .then( res  => {
+        console.log("- 4ª etapa concluída!")
+        return res
+    })
     .catch( err => err )
 
     return {
@@ -91,7 +103,7 @@ async function patchProduct() {
 }
 
 // 5ª etapa da homologação Bling.
-async function deleteProduct() {
+export default async function deleteProduct() {
     const newToken = await addToken() // Retorna um token válido para o aplicativo na Bling.
 
     const patchNewProduct = await patchProduct() // Executa a etapa anterior
@@ -106,17 +118,11 @@ async function deleteProduct() {
         },
         body: JSON.stringify({situacao: "I"})
     })
-    .then( res  => res )
+    .then( res  => {
+        console.log("- 5ª e última etapa concluída!")
+        return "Todas as etapas da homologação foram concluídas com sucesso! Verfique"
+    })
     .catch( err => err )
 
-    return {
-        response: deleteNewProduct,
-        idProduct
-    }       
+    return deleteNewProduct
 }
-// async function teste() {
-//     const test = await deleteProduct()
-//     console.log(test)
-// }
-
-// teste()
