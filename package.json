@@ -3,5 +3,8 @@
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "start": "node execHmg.js"
+  }
 }
