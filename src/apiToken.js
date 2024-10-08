@@ -17,10 +17,10 @@ function writeData(data) {
 
 // Função para criar e adicionar uma nova resposta do Refresh Token no arquivo JSON
 export async function addToken() {
-  const data = readData();
-  const lastRefreshToken = data.tokens[data.tokens.length - 1].refresh_token
+  let data = readData();
+  const lastRefreshToken = data.refresh_token
   const newToken = await getToken(lastRefreshToken)
-  data.tokens.push(newToken)
+  data = newToken
   writeData(data)
 
   return newToken

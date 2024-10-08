@@ -17,6 +17,7 @@ export default async function getToken(refreshToken) {
         body: JSON.stringify(newBody)
     })
     .then(res => res.json())
+    .catch(err => err)
 
     // Retorna a resposta + data e hora da requisição para registro.
     return {
